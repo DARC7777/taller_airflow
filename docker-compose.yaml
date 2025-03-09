@@ -44,31 +44,44 @@
 #
 # Feel free to modify this file to suit your needs.
 ---
-version: "3.8"
-
-x-airflow-common: 
+version: '3.8'
+x-airflow-common:
   &airflow-common
+  # In order to add custom dependencies or upgrade provider packages you can use your extended image.
+  # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
+  # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
+  # se debe construir la imagen de la pcarpeta AIRFLOW por tanto usamos el build
+  # image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.6.0} 
   build:
     context: ./airflow
     dockerfile: Dockerfile
+  
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    # For backward compatibility, with Airflow <2.3
     AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+    # yamllint disable rule:line-length
+    # Use simple http server on scheduler for health checks
+    # See https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/logging-monitoring/check-health.html#scheduler-health-check-server
+    # yamllint enable rule:line-length
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
+    # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
-    - source-data:/data
+    - source-data:/data ############ Se agrega esto
+
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -78,9 +91,6 @@ x-airflow-common:
       condition: service_healthy
 
 services:
-  ####################################
-  # Base de datos para Airflow (PostgreSQL)
-  ####################################
   postgres:
     image: postgres:13
     environment:
@@ -89,8 +99,6 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
@@ -98,36 +106,10 @@ services:
       start_period: 5s
     restart: always
 
-  ####################################
-  # Base de datos para datos del modelo (MySQL)
-  # Se construye desde ./mysql y utiliza el volumen 'models_volume'
-  ####################################
-  mysql:
-    build: ./mysql
-    container_name: mysql_service
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: model_db
-      MYSQL_USER: model_user
-      MYSQL_PASSWORD: model_password
-    ports:
-      - "3306:3306"
-    volumes:
-      - models_volume:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 5
-      start_period: 15s
-    restart: always
-
-  ####################################
-  # Broker de mensajes para Airflow (Redis)
-  ####################################
   redis:
     image: redis:latest
     expose:
-      - "6379"
+      - 6379
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -136,9 +118,6 @@ services:
       start_period: 30s
     restart: always
 
-  ####################################
-  # Stack de Airflow
-  ####################################
   airflow-webserver:
     <<: *airflow-common
     command: webserver
@@ -184,6 +163,8 @@ services:
       start_period: 30s
     environment:
       <<: *airflow-common-env
+      # Required to handle warm shutdown of the celery workers properly
+      # See https://airflow.apache.org/docs/docker-stack/entrypoint.html#signal-propagation
       DUMB_INIT_SETSID: "0"
     restart: always
     depends_on:
@@ -209,6 +190,7 @@ services:
   airflow-init:
     <<: *airflow-common
     entrypoint: /bin/bash
+    # yamllint disable rule:line-length
     command:
       - -c
       - |
@@ -231,7 +213,7 @@ services:
           echo -e "\033[1;33mWARNING!!!: AIRFLOW_UID not set!\e[0m"
           echo "If you are on Linux, you SHOULD follow the instructions below to set "
           echo "AIRFLOW_UID environment variable, otherwise files will be owned by root."
-          echo "For other operating systems you can get rid of the warning with a manually created .env file:"
+          echo "For other operating systems you can get rid of the warning with manually created .env file:"
           echo "    See: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#setting-the-right-airflow-user"
           echo
         fi
@@ -240,7 +222,7 @@ services:
         cpus_available=$$(grep -cE 'cpu[0-9]+' /proc/stat)
         disk_available=$$(df / | tail -1 | awk '{print $$4}')
         warning_resources="false"
-        if (( mem_available < 4000 )); then
+        if (( mem_available < 4000 )) ; then
           echo
           echo -e "\033[1;33mWARNING!!!: Not enough memory available for Docker.\e[0m"
           echo "At least 4GB of memory required. You have $$(numfmt --to iec $$((mem_available * one_meg)))"
@@ -249,7 +231,7 @@ services:
         fi
         if (( cpus_available < 2 )); then
           echo
-          echo -e "\033[1;33mWARNING!!!: Not enough CPUs available for Docker.\e[0m"
+          echo -e "\033[1;33mWARNING!!!: Not enough CPUS available for Docker.\e[0m"
           echo "At least 2 CPUs recommended. You have $${cpus_available}"
           echo
           warning_resources="true"
@@ -319,9 +301,30 @@ services:
         condition: service_completed_successfully
 
 
-  ####################################
-  # Contenedor para archivos de origen
-  ####################################
+############################################################################
+# NUEVOS SERVICIOS
+############################################################################
+
+
+  mysql:
+    image: mysql:8
+    container_name: mysql_service
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: model_db
+      MYSQL_USER: model_user
+      MYSQL_PASSWORD: model_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - models_volume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 15s
+    restart: always
+
   source-files:
     image: alpine:latest
     command: tail -f /dev/null
@@ -329,16 +332,11 @@ services:
       - source-data:/data
     restart: always
 
-  ####################################
-  # Servicio FastAPI para Inferencia
-  # Se construye desde la carpeta ./fastapi, se asigna un nombre de contenedor y
-  # se conecta al volumen 'models_volume' en /home/app/models
-  ####################################
   fastapi:
     build: ./fastapi
     container_name: fastapi_service
     ports:
-      - "8081:8000"  # Accedes a FastAPI en http://localhost:8081
+      - "8081:8000"
     volumes:
       - models_volume:/home/app/models
     depends_on:
@@ -348,3 +346,4 @@ volumes:
   postgres-db-volume:
   models_volume:
   source-data:
+
