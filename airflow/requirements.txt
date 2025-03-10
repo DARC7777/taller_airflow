@@ -2,3 +2,6 @@ pandas
 scikit-learn
 xgboost
 tensorflow
+pymysql
+joblib
+sqlalchemy

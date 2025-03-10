@@ -1,0 +1,32 @@
+[2025-03-10T01:15:08.688+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: penguins_workflow.clear_penguins_tables manual__2025-03-10T01:09:59.920714+00:00 [queued]>
+[2025-03-10T01:15:08.707+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: penguins_workflow.clear_penguins_tables manual__2025-03-10T01:09:59.920714+00:00 [queued]>
+[2025-03-10T01:15:08.707+0000] {taskinstance.py:1331} INFO - Starting attempt 2 of 2
+[2025-03-10T01:15:08.728+0000] {taskinstance.py:1350} INFO - Executing <Task(MySqlOperator): clear_penguins_tables> on 2025-03-10 01:09:59.920714+00:00
+[2025-03-10T01:15:08.748+0000] {standard_task_runner.py:57} INFO - Started process 210 to run task
+[2025-03-10T01:15:08.760+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'penguins_workflow', 'clear_penguins_tables', 'manual__2025-03-10T01:09:59.920714+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/penguins_workflow.py', '--cfg-path', '/tmp/tmp2cyxrsbf']
+[2025-03-10T01:15:08.765+0000] {standard_task_runner.py:85} INFO - Job 10: Subtask clear_penguins_tables
+[2025-03-10T01:15:08.896+0000] {task_command.py:410} INFO - Running <TaskInstance: penguins_workflow.clear_penguins_tables manual__2025-03-10T01:09:59.920714+00:00 [running]> on host 1f20082b5af4
+[2025-03-10T01:15:09.082+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='penguins_workflow' AIRFLOW_CTX_TASK_ID='clear_penguins_tables' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T01:09:59.920714+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T01:09:59.920714+00:00'
+[2025-03-10T01:15:09.084+0000] {sql.py:262} INFO - Executing: 
+        DROP TABLE IF EXISTS penguins_raw;
+        DROP TABLE IF EXISTS penguins_preprocessed;
+    
+[2025-03-10T01:15:09.107+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-10T01:15:09.270+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-10T01:15:09.291+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/operators/sql.py", line 274, in execute
+    **extra_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 342, in run
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/mysql/hooks/mysql.py", line 188, in get_conn
+    return MySQLdb.connect(**conn_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/MySQLdb/__init__.py", line 123, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/MySQLdb/connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (2005, "Unknown MySQL server host 'mysql_container' (-3)")
+[2025-03-10T01:15:09.323+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=penguins_workflow, task_id=clear_penguins_tables, execution_date=20250310T010959, start_date=20250310T011508, end_date=20250310T011509
+[2025-03-10T01:15:09.348+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 10 for task clear_penguins_tables ((2005, "Unknown MySQL server host 'mysql_container' (-3)"); 210)
+[2025-03-10T01:15:09.421+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-10T01:15:09.507+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

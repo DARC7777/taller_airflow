@@ -12,7 +12,7 @@ model_names = ["random_forest", "decision_tree", "svm", "logistic_regression"]
 # Cargamos los modelos desde el directorio compartido (asegúrate de que la ruta coincide con el mapeo en Docker)
 models = {}
 for name in model_names:
-    file_path = f"/home/app/models/{name}.pkl"
+    file_path = f"/opt/airflow/models/{name}.pkl"
     if os.path.exists(file_path):
         models[name] = joblib.load(file_path)
     else:
