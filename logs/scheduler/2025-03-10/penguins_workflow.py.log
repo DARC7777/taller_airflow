@@ -3088,3 +3088,59 @@ ModuleNotFoundError: No module named 'joblib'
 [2025-03-10T04:08:04.828+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:08:04.827+0000] {dag.py:2726} INFO - Sync 1 DAGs
 [2025-03-10T04:08:04.868+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:08:04.868+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
 [2025-03-10T04:08:04.909+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.622 seconds
+[2025-03-10T04:08:35.170+0000] {processor.py:156} INFO - Started process (PID=421) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:08:35.173+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:08:35.174+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:08:35.174+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:08:36.539+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:08:36.583+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:08:36.582+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:08:36.618+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:08:36.618+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:08:36.643+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.480 seconds
+[2025-03-10T04:09:06.907+0000] {processor.py:156} INFO - Started process (PID=433) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:09:06.911+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:09:06.912+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:09:06.912+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:09:08.318+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:09:08.375+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:09:08.375+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:09:08.423+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:09:08.423+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:09:08.466+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.566 seconds
+[2025-03-10T04:09:38.740+0000] {processor.py:156} INFO - Started process (PID=445) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:09:38.742+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:09:38.743+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:09:38.743+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:09:40.233+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:09:40.289+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:09:40.289+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:09:40.340+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:09:40.339+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:09:40.365+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.635 seconds
+[2025-03-10T04:10:10.645+0000] {processor.py:156} INFO - Started process (PID=457) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:10:10.648+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:10:10.649+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:10:10.649+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:10:12.009+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:10:12.053+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:10:12.052+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:10:12.087+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:10:12.087+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:10:12.111+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.475 seconds
+[2025-03-10T04:10:42.356+0000] {processor.py:156} INFO - Started process (PID=469) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:10:42.359+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:10:42.360+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:10:42.360+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:10:43.772+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:10:43.815+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:10:43.815+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:10:43.851+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:10:43.851+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:10:43.877+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.530 seconds
+[2025-03-10T04:11:14.158+0000] {processor.py:156} INFO - Started process (PID=481) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:11:14.162+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:11:14.163+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:11:14.163+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:11:15.588+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:11:15.638+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:11:15.637+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:11:15.682+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:11:15.681+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:11:15.712+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.564 seconds
+[2025-03-10T04:11:45.858+0000] {processor.py:156} INFO - Started process (PID=493) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:11:45.870+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:11:45.872+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:11:45.872+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:11:47.431+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:11:47.475+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:11:47.474+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:11:47.512+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:11:47.512+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:11:47.537+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.690 seconds
+[2025-03-10T04:12:17.870+0000] {processor.py:156} INFO - Started process (PID=506) to work on /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:12:17.873+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/penguins_workflow.py for tasks to queue
+[2025-03-10T04:12:17.875+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:12:17.874+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:12:19.590+0000] {processor.py:809} INFO - DAG(s) dict_keys(['penguins_workflow']) retrieved from /opt/airflow/dags/penguins_workflow.py
+[2025-03-10T04:12:19.655+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:12:19.654+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-10T04:12:19.690+0000] {logging_mixin.py:149} INFO - [2025-03-10T04:12:19.690+0000] {dag.py:3490} INFO - Setting next_dagrun for penguins_workflow to 2025-03-10T00:11:22.192414+00:00, run_after=2025-03-11T00:11:22.192414+00:00
+[2025-03-10T04:12:19.717+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/penguins_workflow.py took 1.854 seconds
