@@ -1,0 +1,18 @@
+[2025-03-10T04:37:35.552+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: penguins_workflow.train_models manual__2025-03-10T04:37:19.404579+00:00 [queued]>
+[2025-03-10T04:37:35.571+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: penguins_workflow.train_models manual__2025-03-10T04:37:19.404579+00:00 [queued]>
+[2025-03-10T04:37:35.571+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-10T04:37:35.591+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): train_models> on 2025-03-10 04:37:19.404579+00:00
+[2025-03-10T04:37:35.614+0000] {standard_task_runner.py:57} INFO - Started process 872 to run task
+[2025-03-10T04:37:35.624+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'penguins_workflow', 'train_models', 'manual__2025-03-10T04:37:19.404579+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/penguins_workflow.py', '--cfg-path', '/tmp/tmpjh2atcmw']
+[2025-03-10T04:37:35.633+0000] {standard_task_runner.py:85} INFO - Job 66: Subtask train_models
+[2025-03-10T04:37:35.736+0000] {task_command.py:410} INFO - Running <TaskInstance: penguins_workflow.train_models manual__2025-03-10T04:37:19.404579+00:00 [running]> on host ab5a556ad2b5
+[2025-03-10T04:37:35.914+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='penguins_workflow' AIRFLOW_CTX_TASK_ID='train_models' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T04:37:19.404579+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T04:37:19.404579+00:00'
+[2025-03-10T04:37:36.265+0000] {logging_mixin.py:149} INFO - Modelo random_forest entrenado y guardado en /opt/***/models/random_forest.pkl
+[2025-03-10T04:37:36.269+0000] {logging_mixin.py:149} INFO - Modelo decision_tree entrenado y guardado en /opt/***/models/decision_tree.pkl
+[2025-03-10T04:37:36.294+0000] {logging_mixin.py:149} INFO - Modelo svm entrenado y guardado en /opt/***/models/svm.pkl
+[2025-03-10T04:37:36.303+0000] {logging_mixin.py:149} INFO - Modelo logistic_regression entrenado y guardado en /opt/***/models/logistic_regression.pkl
+[2025-03-10T04:37:36.304+0000] {logging_mixin.py:149} INFO - Todos los modelos han sido entrenados.
+[2025-03-10T04:37:36.304+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-03-10T04:37:36.324+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=penguins_workflow, task_id=train_models, execution_date=20250310T043719, start_date=20250310T043735, end_date=20250310T043736
+[2025-03-10T04:37:36.395+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-10T04:37:36.443+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

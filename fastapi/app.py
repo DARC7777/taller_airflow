@@ -6,10 +6,8 @@ import os
 
 app = FastAPI()
 
-# Lista de nombres de modelos que esperamos encontrar
 model_names = ["random_forest", "decision_tree", "svm", "logistic_regression"]
 
-# Cargamos los modelos desde el directorio compartido (asegúrate de que la ruta coincide con el mapeo en Docker)
 models = {}
 for name in model_names:
     file_path = f"/opt/airflow/models/{name}.pkl"
@@ -18,10 +16,8 @@ for name in model_names:
     else:
         print(f"Warning: El modelo {name} no existe en {file_path}")
 
-# Modelo seleccionado por defecto
 selected_model = "random_forest"
 
-# Definición del esquema de entrada para la predicción
 class PenguinFeatures(BaseModel):
     culmen_length_mm: float
     culmen_depth_mm: float
@@ -39,7 +35,6 @@ def predict(features: PenguinFeatures):
     model = model_data["model"]
     scaler = model_data["scaler"]
 
-    # Preparar los datos de entrada
     input_data = np.array([[features.culmen_length_mm,
                              features.culmen_depth_mm,
                              features.flipper_length_mm,
